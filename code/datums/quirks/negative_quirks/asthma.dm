@@ -4,7 +4,7 @@
 	icon = FA_ICON_LUNGS_VIRUS
 	value = -4 // trivialized by NOBREATH but still quite dangerous
 	gain_text = span_danger("Дышать становится труднее.")
-	lose_text = span_notice("Вам становится невероятно легко дышать!»")
+	lose_text = span_notice("Вам становится невероятно легко дышать!")
 	medical_record_text = "Пациент страдает астмой."
 	hardcore_value = 2
 	quirk_flags = QUIRK_HUMAN_ONLY

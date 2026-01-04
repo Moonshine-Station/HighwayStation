@@ -39,7 +39,7 @@
 	if(random_index % 2 == 0)
 		random_index = 0
 		replace_personalities(base_personalities)
-		to_chat(quirk_holder, span_notice("Я чувствую себя... Нормальным."))
+		to_chat(quirk_holder, span_notice("Я чувствую себя... нормальным."))
 		announce_personality_change()
 		return
 

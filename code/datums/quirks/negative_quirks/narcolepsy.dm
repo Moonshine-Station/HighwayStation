@@ -24,7 +24,7 @@
 			LOCATION_RPOCKET,
 			LOCATION_HANDS,
 		),
-		flavour_text = "Дается вам, что бы помочь не заснуть во время работы...",
+		flavour_text = "Дается вам, чтобы помочь не заснуть во время работы...",
 		notify_player = TRUE,
 	)
 

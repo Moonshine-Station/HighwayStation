@@ -2,7 +2,7 @@
 	savefile_key = "introvert"
 	name = "Интроверт"
 	desc = "Предпочту почитать в библиотеке."
-	pos_gameplay_desc = "Любит находится в библиотеке"
+	pos_gameplay_desc = "Любит находиться в библиотеке"
 	neg_gameplay_desc = "Не любит большие группы" // почему то было закомментировано
 	personality_trait = TRAIT_INTROVERT
 	groups = list(PERSONALITY_GROUP_INTERACTION)
@@ -11,7 +11,7 @@
 	savefile_key = "extrovert"
 	name = "Экстраверт"
 	desc = "Предпочту выпить пару стопок в окружении людей"
-	pos_gameplay_desc = "Любит находится в баре"
+	pos_gameplay_desc = "Любит находиться в баре"
 	neg_gameplay_desc = "Не любит быть в одиночестве" // почему то было закомментировано
 	personality_trait = TRAIT_EXTROVERT
 	groups = list(PERSONALITY_GROUP_INTERACTION, PERSONALITY_GROUP_OTHERS)
