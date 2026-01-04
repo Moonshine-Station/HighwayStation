@@ -4,16 +4,18 @@
  * You can make the custom cheese spells you've always wanted.
  * Just make it fun and engaging, it's PvE content.
  */
-/obj/item/bitrunning_disk
+/obj/item/disk/bitrunning
 	name = "generic bitrunning program"
 	desc = "Диск с исходным кодом."
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	base_icon_state = "datadisk"
 	icon_state = "datadisk0"
+	sticker_icon_state = "o_code"
+	reskin_allowed = FALSE
 	/// Name of the choice made
 	var/choice_made
 
-/obj/item/bitrunning_disk/Initialize(mapload)
+/obj/item/disk/bitrunning/Initialize(mapload)
 	. = ..()
 
 	icon_state = "[base_icon_state][rand(0, 7)]"
@@ -23,7 +25,7 @@
 		load_callback = CALLBACK(src, PROC_REF(load_onto_avatar)), \
 	)
 
-/obj/item/bitrunning_disk/examine(mob/user)
+/obj/item/disk/bitrunning/examine(mob/user)
 	. = ..()
 	. += span_infoplain("Этот диск должен находится у вас, когда вы входите в нетпод.")
 
@@ -35,7 +37,7 @@
 	. += span_notice("Нельзя более вносить изменения.")
 
 /// Handles loading our stuff onto avatars
-/obj/item/bitrunning_disk/proc/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
+/obj/item/disk/bitrunning/proc/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
 	return NONE
 
 
@@ -46,7 +48,7 @@
 	/// The list of actions that this can grant
 	var/list/datum/action/selectable_actions = list()
 
-/obj/item/bitrunning_disk/ability/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
+/obj/item/disk/bitrunning/ability/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
 	if(domain_flags & DOMAIN_FORBIDS_ABILITIES)
 		return BITRUNNER_GEAR_LOAD_BLOCKED
 
@@ -60,8 +62,8 @@
 	our_action.Grant(avatar)
 	return NONE
 
-/obj/item/bitrunning_disk/ability/attack_self(mob/user, modifiers)
-	. = ..()
+/obj/item/disk/bitrunning/ability/attack_self(mob/user, modifiers)
+	// Not calling parent to not flip the protection tab
 
 	if(choice_made)
 		return
@@ -118,7 +120,7 @@
 	/// The list of actions that this can grant
 	var/list/obj/selectable_items = list()
 
-/obj/item/bitrunning_disk/item/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
+/obj/item/disk/bitrunning/item/load_onto_avatar(mob/living/carbon/human/neo, mob/living/carbon/human/avatar, domain_flags)
 	if(domain_flags & DOMAIN_FORBIDS_ITEMS)
 		return BITRUNNER_GEAR_LOAD_BLOCKED
 
@@ -128,7 +130,7 @@
 	avatar.put_in_hands(new granted_item())
 	return NONE
 
-/obj/item/bitrunning_disk/item/attack_self(mob/user, modifiers)
+/obj/item/disk/bitrunning/item/attack_self(mob/user, modifiers)
 	. = ..()
 
 	if(choice_made)
@@ -178,7 +180,7 @@
 	)
 
 ///proto-kinetic accelerator mods, to be applied to pka's given inside domains
-/obj/item/bitrunning_disk/item/pka_mods
+/obj/item/disk/bitrunning/item/pka_mods
 	name = "bitrunning gear: proto-kinetic accelerator mods"
 	selectable_items = list(
 		/obj/item/borg/upgrade/modkit/range,
@@ -188,7 +190,7 @@
 		/obj/item/borg/upgrade/modkit/human_passthrough,
 	)
 
-/obj/item/bitrunning_disk/item/pka_mods/premium
+/obj/item/disk/bitrunning/item/pka_mods/premium
 	name = "bitrunning gear: premium proto-kinetic accelerator mods"
 	selectable_items = list(
 		/obj/item/borg/upgrade/modkit/cooldown/repeater,
@@ -199,7 +201,7 @@
 	)
 
 ///proto-kinetic crusher trophies, to be applied to pkc's given inside domains
-/obj/item/bitrunning_disk/item/pkc_mods
+/obj/item/disk/bitrunning/item/pkc_mods
 	name = "bitrunning gear: proto-kinetic crusher mods"
 	selectable_items = list(
 		/obj/item/crusher_trophy/watcher_wing,
@@ -208,7 +210,7 @@
 		/obj/item/crusher_trophy/wolf_ear,
 	)
 
-/obj/item/bitrunning_disk/item/pkc_mods/premium
+/obj/item/disk/bitrunning/item/pkc_mods/premium
 	name = "bitrunning gear: premium proto-kinetic crusher mods"
 	selectable_items = list(
 		/obj/item/crusher_trophy/watcher_wing/ice_wing,
@@ -220,7 +222,7 @@
 		/obj/item/crusher_trophy/ice_demon_cube,
 	)
 
-/obj/item/bitrunning_disk/item/mini_uzi
+/obj/item/disk/bitrunning/item/mini_uzi
 	name = "bitrunning gear: mini-uzi"
 	selectable_items = list(
 		/obj/item/gun/ballistic/automatic/mini_uzi,

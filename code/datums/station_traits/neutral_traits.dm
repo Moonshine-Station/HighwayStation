@@ -377,7 +377,8 @@
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = TRUE
 	weight = 1
-	report_message = "Мы получили сообщения о высоком содержании следов эйгенштазиума на вашей станции. Убедитесь, что ваши шкафы работают правильно."
+	report_message = "Мы получили сообщения о неконтролируемых потоках блюспейс пространства, влияющих на шкафчики и ящики на вашей станции. \
+		Вы можете потерять часть своих вещей... или приобрести новые!"
 
 /datum/station_trait/linked_closets/on_round_start()
 	. = ..()
@@ -392,7 +393,7 @@
 		var/list/targets = list()
 		for(var/how_many in 1 to rand(2,3))
 			targets += pick_n_take(roundstart_closets)
-		GLOB.eigenstate_manager.create_new_link(targets)
+		GLOB.closet_teleport_controller.create_new_link(targets)
 
 
 #define PRO_SKUB "pro-skub"

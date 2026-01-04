@@ -527,8 +527,8 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	difficulty = 4
 	steal_hint = "Жесткий диск из мастер-сервера исследовательского отдела. Находится в серверной отдела исследований и разработок."
 
-/obj/item/computer_disk/hdd_theft/add_stealing_item_objective()
-	return add_item_to_steal(src, /obj/item/computer_disk/hdd_theft)
+/obj/item/disk/computer/hdd_theft/add_stealing_item_objective()
+	return add_item_to_steal(src, /obj/item/disk/computer/hdd_theft)
 
 /datum/objective_item/steal/hdd_extraction/New()
 	special_equipment += /obj/item/paper/guides/antag/hdd_extraction

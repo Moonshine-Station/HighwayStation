@@ -33,12 +33,12 @@
 
 /datum/orderable_item/bitrunning_tech/gimmick_sports
 	cost_per_order = 750
-	purchase_path = /obj/item/bitrunning_disk/gimmick/sports
+	purchase_path = /obj/item/disk/bitrunning/gimmick/sports
 	desc = "This disk contains a program that lets you equip a sports-themed gimmick loadout."
 
 /datum/orderable_item/bitrunning_tech/gimmick_dungeon_crawling
 	cost_per_order = 1250
-	purchase_path = /obj/item/bitrunning_disk/gimmick/dungeon
+	purchase_path = /obj/item/disk/bitrunning/gimmick/dungeon
 	desc = "This disk contains a program that lets you equip a dungeon crawling-themed gimmick loadout."
 
 /datum/orderable_item/bitrunning_tech/flip_skillchip
@@ -46,21 +46,21 @@
 	cost_per_order = 1500
 
 /datum/orderable_item/bitrunning_tech/pka_mod
-	purchase_path = /obj/item/bitrunning_disk/item/pka_mods
+	purchase_path = /obj/item/disk/bitrunning/item/pka_mods
 	cost_per_order = 750
 	desc = "This disk contains a program that lets you equip modkits for the proto-kinetic accelerator. Proto-kinetic accelerator not included."
 
 /datum/orderable_item/bitrunning_tech/pka_mod/premium
-	purchase_path = /obj/item/bitrunning_disk/item/pka_mods/premium
+	purchase_path = /obj/item/disk/bitrunning/item/pka_mods/premium
 	cost_per_order = 1600
 	desc = "This disk contains a program that lets you equip stronger modkits for the proto-kinetic accelerator. Proto-kinetic accelerator not included."
 
 /datum/orderable_item/bitrunning_tech/pkc_mod
-	purchase_path = /obj/item/bitrunning_disk/item/pkc_mods
+	purchase_path = /obj/item/disk/bitrunning/item/pkc_mods
 	cost_per_order = 750
 	desc = "This disk contains a program that lets you equip trophies for the proto-kinetic crusher. Proto-kinetic crusher no included."
 
 /datum/orderable_item/bitrunning_tech/pkc_mod/premium
-	purchase_path = /obj/item/bitrunning_disk/item/pkc_mods/premium
+	purchase_path = /obj/item/disk/bitrunning/item/pkc_mods/premium
 	cost_per_order = 1600
 	desc = "This disk contains a program that lets you equip stronger trophies for the proto-kinetic crusher. Proto-kinetic crusher not included."

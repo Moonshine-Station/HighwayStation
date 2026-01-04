@@ -9,6 +9,8 @@
 	var/buckle_requires_restraints = FALSE
 	/// The mobs currently buckled to this atom
 	var/list/mob/living/buckled_mobs = null //list()
+	/// How much time it takes to buckle a mob to us?
+	var/buckle_delay = 2 SECONDS
 	/// The maximum number of mob/livings allowed to be buckled to this atom at once
 	var/max_buckled_mobs = 1
 	/// Whether things buckled to this atom can be pulled while they're buckled

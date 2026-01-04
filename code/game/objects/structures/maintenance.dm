@@ -11,6 +11,8 @@ at the cost of risking a vicious bite.**/
 	var/obj/item/hidden_item
 	///This var determines if there is a chance to receive a bite when sticking your hand into the water.
 	var/critter_infested = TRUE
+	///A subtle loop which plays a drop of water sound every once in a while
+	var/datum/looping_sound/drip/drip_sfx
 	///weighted loot table for what loot you can find inside the moisture trap.
 	///the actual loot isn't that great and should probably be improved and expanded later.
 	var/static/list/loot_table = list(
@@ -53,6 +55,7 @@ at the cost of risking a vicious bite.**/
 /obj/structure/moisture_trap/Destroy()
 	if(hidden_item)
 		QDEL_NULL(hidden_item)
+	drip_sfx?.stop(TRUE)
 	return ..()
 
 
@@ -74,6 +77,7 @@ at the cost of risking a vicious bite.**/
 		to_chat(user, span_warning("You need to lie down to reach into [src]."))
 		return
 	to_chat(user, span_notice("You reach down into the cold water of the basin."))
+	playsound(src,'sound/effects/submerge.ogg', 25, TRUE)
 	if(!do_after(user, 2 SECONDS, target = src))
 		return
 	if(hidden_item)
@@ -112,6 +116,7 @@ at the cost of risking a vicious bite.**/
 		return
 	hidden_item = I
 	to_chat(user, span_notice("You hide [I] inside the basin."))
+	playsound(src,'sound/effects/splash.ogg', 55, TRUE)
 
 #define ALTAR_INACTIVE 0
 #define ALTAR_STAGEONE 1
