@@ -6,7 +6,7 @@
 #endif
 
 #ifndef ABSOLUTE_MINIMUM
-#include "map_files\generic\CentCom.dmm"
+#include "map_files\generic\CentCom_Modular.dmm" // MODULAR EDIT - Our Map
 #else
 #include "map_files\generic\CentCom_minimal.dmm"
 #endif
