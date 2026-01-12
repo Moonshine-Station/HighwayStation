@@ -360,6 +360,8 @@
 	icon = 'modular_content/aesthetics/boxes/icons/boxes.dmi'
 	icon_state = "votebox_maint"
 
+// MARK: Not-existent
+
 /obj/item/storage/box/methdealer
 	icon = 'icons/obj/storage/box.dmi'
 
@@ -368,3 +370,7 @@
 
 /obj/item/storage/box/kronkdealer
 	icon = 'icons/obj/storage/box.dmi'
+
+/obj/item/storage/box/stamps
+	icon = 'icons/obj/storage/box.dmi'
+	icon_state = "box"
