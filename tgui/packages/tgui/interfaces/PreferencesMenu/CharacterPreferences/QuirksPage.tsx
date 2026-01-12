@@ -39,7 +39,7 @@ function getColorValueClass(quirk: Quirk) {
 
 function getCorrespondingPreferences(
   customization_options: string[],
-  relevant_preferences: Record<string, string>,
+  relevant_preferences: Record<string, string> = {},
 ) {
   return Object.fromEntries(
     filter(Object.entries(relevant_preferences), ([key, value]) =>
@@ -55,19 +55,21 @@ type QuirkListProps = {
 };
 
 type QuirkProps = {
-  onClick: (quirkName: string, quirk: Quirk) => void;
+  handleClick: (quirkName: string, quirk: Quirk) => void;
   randomBodyEnabled: boolean;
   selected: boolean;
   serverData: ServerData;
+  quirkActionLocked: boolean;
 };
 
 function QuirkList(props: QuirkProps & QuirkListProps) {
   const {
     quirks = [],
     selected,
-    onClick,
+    handleClick,
     serverData,
     randomBodyEnabled,
+    quirkActionLocked,
   } = props;
 
   return (
@@ -80,7 +82,8 @@ function QuirkList(props: QuirkProps & QuirkListProps) {
           randomBodyEnabled={randomBodyEnabled}
           selected={selected}
           serverData={serverData}
-          onClick={onClick}
+          handleClick={handleClick}
+          quirkActionLocked={quirkActionLocked}
         />
       ))}
     </Stack>
@@ -94,7 +97,7 @@ type QuirkDisplayProps = {
 } & QuirkProps;
 
 function QuirkDisplay(props: QuirkDisplayProps) {
-  const { quirk, quirkKey, onClick, selected } = props;
+  const { quirk, quirkKey, handleClick, selected, quirkActionLocked } = props;
   const { icon, value, name, description, customizable, failTooltip } = quirk;
 
   const className = 'PreferencesMenu__QuirksQuirk';
@@ -108,13 +111,18 @@ function QuirkDisplay(props: QuirkDisplayProps) {
         getColorValueClass(quirk),
         failTooltip && 'Unremovable',
       ])}
-      onClick={(event) => {
-        event.stopPropagation();
+      style={{
+        opacity: props.quirkActionLocked ? 0.6 : 1,
+        pointerEvents: props.quirkActionLocked ? 'none' : 'auto',
+      }}
+      onClick={() => {
+        if (quirkActionLocked)
+          return;
         if (selected) {
           setCustomizationExpanded(false);
         }
 
-        onClick(quirkKey, quirk);
+        handleClick(quirkKey, quirk);
       }}
     >
       <Stack.Item className={`${className}--Icon`}>
@@ -264,6 +272,19 @@ function QuirkPage() {
     data.selected_quirks = selected_quirks;
   }
 
+  const [quirkActionLocked, setQuirkActionLocked] = useState(false);
+
+  function withQuirkDebounce(debounce: () => void, delay = 200) {
+    if (quirkActionLocked) return;
+
+    setQuirkActionLocked(true);
+    debounce();
+
+    setTimeout(() => {
+      setQuirkActionLocked(false);
+    }, delay);
+  }
+
   const [searchQuery, setSearchQuery] = useState('');
   const server_data = useServerPrefs();
   if (!server_data) return;
@@ -366,14 +387,16 @@ function QuirkPage() {
         >
           <QuirkList
             selected={false}
-            onClick={(quirkName, quirk) => {
+            quirkActionLocked={quirkActionLocked}
+              handleClick={(quirkName, quirk) => {
               if (getReasonToNotAdd(quirkName) !== undefined) {
                 return;
               }
 
-              setSelectedQuirks(selectedQuirks.concat(quirkName));
-
-              act('give_quirk', { quirk: quirk.name });
+                withQuirkDebounce(() => {
+                setSelectedQuirks(selectedQuirks.concat(quirkName));
+                act('give_quirk', { quirk: quirk.name });
+                });
             }}
             quirks={quirks
               .filter(([quirkName, _]) => {
@@ -410,16 +433,19 @@ function QuirkPage() {
         <Section fill scrollable title="Текущие черты">
           <QuirkList
             selected
-            onClick={(quirkName, quirk) => {
+            quirkActionLocked={quirkActionLocked}
+              handleClick={(quirkName, quirk) => {
               if (getReasonToNotRemove(quirkName) !== undefined) {
                 return;
               }
 
-              setSelectedQuirks(
-                selectedQuirks.filter((otherQuirk) => quirkName !== otherQuirk),
-              );
+                withQuirkDebounce(() => {
+                  setSelectedQuirks(
+                    selectedQuirks.filter((otherQuirk) => quirkName !== otherQuirk),
+                  );
 
-              act('remove_quirk', { quirk: quirk.name });
+                act('remove_quirk', { quirk: quirk.name });
+                });
             }}
             quirks={quirks
               .filter(([quirkName, _]) => {

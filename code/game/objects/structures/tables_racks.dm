@@ -1033,10 +1033,12 @@
 ///Align the mob with the table when buckled.
 /obj/structure/table/optable/post_buckle_mob(mob/living/buckled)
 	buckled.add_offsets(type, z_add = 6)
+	buckled.AddComponentFrom(type, /datum/component/free_operation)
 
 ///Disalign the mob with the table when unbuckled.
 /obj/structure/table/optable/post_unbuckle_mob(mob/living/buckled)
 	buckled.remove_offsets(type)
+	buckled.RemoveComponentSource(type, /datum/component/free_operation)
 
 /// Any mob that enters our tile will be marked as a potential patient. They will be turned into a patient if they lie down.
 /obj/structure/table/optable/proc/mark_patient(datum/source, mob/living/potential_patient)
@@ -1086,8 +1088,8 @@
 		UnregisterSignal(patient, list(
 			SIGNAL_ADDTRAIT(TRAIT_READY_TO_OPERATE),
 			SIGNAL_REMOVETRAIT(TRAIT_READY_TO_OPERATE),
-			COMSIG_LIVING_BEING_OPERATED_ON,
-			COMSIG_LIVING_SURGERY_FINISHED,
+			COMSIG_ATOM_BEING_OPERATED_ON,
+			COMSIG_ATOM_SURGERY_FINISHED,
 			COMSIG_LIVING_UPDATING_SURGERY_STATE,
 		))
 		if (patient.external && patient.external == air_tank)
@@ -1101,10 +1103,10 @@
 	RegisterSignals(patient, list(
 		SIGNAL_ADDTRAIT(TRAIT_READY_TO_OPERATE),
 		SIGNAL_REMOVETRAIT(TRAIT_READY_TO_OPERATE),
-		COMSIG_LIVING_SURGERY_FINISHED,
+		COMSIG_ATOM_SURGERY_FINISHED,
 		COMSIG_LIVING_UPDATING_SURGERY_STATE,
 	), PROC_REF(on_surgery_change))
-	RegisterSignal(patient, COMSIG_LIVING_BEING_OPERATED_ON, PROC_REF(get_surgeries))
+	RegisterSignal(patient, COMSIG_ATOM_BEING_OPERATED_ON, PROC_REF(get_surgeries))
 
 /obj/structure/table/optable/proc/on_surgery_change(datum/source)
 	SIGNAL_HANDLER
