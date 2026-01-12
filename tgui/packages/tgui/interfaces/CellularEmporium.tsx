@@ -109,7 +109,7 @@ export const CellularEmporium = (props) => {
           title={
             <Stack fill>
               <Stack.Item fontSize="16px" color="#DD66DD" ml={1}>
-                <Icon name="dna" /> {genetic_points_count} DNA
+                <Icon name="dna" /> {genetic_points_count} ДНК
               </Stack.Item>
               <Stack.Item grow />
               <Stack.Item>
@@ -119,12 +119,12 @@ export const CellularEmporium = (props) => {
                   disabled={!can_readapt}
                   tooltip={
                     can_readapt
-                      ? 'Un-evolve all abilities and refund genetic points.'
-                      : 'Need more DNA to readapt.'
+                      ? 'Избавиться от всех развитных способностей и вернуть генетические очки.'
+                      : 'Нужно больше ДНК для реадаптации.'
                   }
                   onClick={() => act('readapt')}
                 >
-                  Readapt ({can_readapt})
+                  Реадаптация ({can_readapt})
                 </Button>
               </Stack.Item>
             </Stack>
@@ -137,7 +137,7 @@ export const CellularEmporium = (props) => {
                   <Input
                     autoFocus
                     value={searchText}
-                    placeholder="Search..."
+                    placeholder="Поиск..."
                     onChange={setSearchText}
                     fluid
                   />
@@ -238,19 +238,19 @@ const ItemList = (props: ItemListProps) => {
             ability.dna_required <= dna_count;
 
           const requirementTooltip = [
-            `${ability.genetic_point_required} DNA`,
+            `${ability.genetic_point_required} ДНК`,
             ...(ability.absorbs_required > 0
-              ? [`${ability.absorbs_required} absorptions`]
+              ? [`${ability.absorbs_required} поглощений`]
               : []),
             ...(ability.dna_required > 0
-              ? [`${ability.dna_required} DNA`]
+              ? [`${ability.dna_required} ДНК`]
               : []),
           ].join(', ');
 
           const costDisplay =
             ability.dna_required > 0
-              ? `Cost: ${ability.dna_required} DNA`
-              : `Cost: ${ability.genetic_point_required} DNA`;
+              ? `Цена: ${ability.dna_required} ДНК`
+              : `Цена: ${ability.genetic_point_required} ДНК`;
 
           const iconState = nameToIconState(ability.name);
 
@@ -336,7 +336,7 @@ const ItemList = (props: ItemListProps) => {
                             {ability.name}
                             {owned && (
                               <Box color="#44bd46" inline ml={1}>
-                                (Owned)
+                                (Имеется)
                               </Box>
                             )}
                           </Box>

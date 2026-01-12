@@ -1,9 +1,9 @@
 ///Bounties that require you to perform documentation and inspection of your department to send to centcom.
 /datum/bounty/patrol
-	name = "Patrol Station"
-	description = "Perform a routine patrol of %AREA_NAME%. \
-		You must travel at least %AREA_COVERAGE% meters within the area. \
-		Your ID card will update you as you progress."
+	name = "Патруль станции"
+	description = "Проведите рутинную инспекцию безопасности в %AREA_NAME%. \
+		Вы должны пройти как минимум %AREA_COVERAGE%м в указанной территории. \
+		Ваша ID-карта будет оповещать о прогрессе."
 	reward = CARGO_CRATE_VALUE * 5
 	allow_duplicate = TRUE
 
