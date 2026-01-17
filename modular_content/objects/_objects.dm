@@ -41,14 +41,14 @@
 	GLOB.wood_recipes += list(
 		null,
 		new /datum/stack_recipe_list("Деревянный пол", list(
-			new /datum/stack_recipe("Обычный", /obj/item/stack/tile/wood, 1, 4, 20),
-			new /datum/stack_recipe("Дубовый", /obj/item/stack/tile/wood/oak, 1, 4, 20),
-			new /datum/stack_recipe("Берёзовый", /obj/item/stack/tile/wood/birch, 1, 4, 20),
-			new /datum/stack_recipe("Вишнёвый", /obj/item/stack/tile/wood/cherry, 1, 4, 20),
-			new /datum/stack_recipe("Амарантовый", /obj/item/stack/tile/wood/amaranth, 1, 4, 20),
-			new /datum/stack_recipe("Эбонитовый", /obj/item/stack/tile/wood/ebonite, 2, 4, 20),
-			new /datum/stack_recipe("Умниниевый", /obj/item/stack/tile/wood/pink_ivory, 2, 4, 20),
-			new /datum/stack_recipe("Бакаутовый", /obj/item/stack/tile/wood/guaiacum, 2, 4, 20),
+			new /datum/stack_recipe("Обычный", /obj/item/stack/tile/wood, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES),
+			new /datum/stack_recipe("Дубовый", /obj/item/stack/tile/wood/oak, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES),
+			new /datum/stack_recipe("Берёзовый", /obj/item/stack/tile/wood/birch, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES),
+			new /datum/stack_recipe("Вишнёвый", /obj/item/stack/tile/wood/cherry, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES),
+			new /datum/stack_recipe("Амарантовый", /obj/item/stack/tile/wood/amaranth, 1, 4, 20, crafting_flags = NONE, category = CAT_TILES),
+			new /datum/stack_recipe("Эбонитовый", /obj/item/stack/tile/wood/ebonite, 2, 4, 20, crafting_flags = NONE, category = CAT_TILES),
+			new /datum/stack_recipe("Умниниевый", /obj/item/stack/tile/wood/pink_ivory, 2, 4, 20, crafting_flags = NONE, category = CAT_TILES),
+			new /datum/stack_recipe("Бакаутовый", /obj/item/stack/tile/wood/guaiacum, 2, 4, 20, crafting_flags = NONE, category = CAT_TILES),
 			)),
 		null)
 

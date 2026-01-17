@@ -2,6 +2,9 @@
 	name = "Психотическая шизофрения"
 	desc = "У пациента есть подтип бредового расстройства, он становится иррационально привязанным к кому-то."
 	scan_desc = "психотический шизофренический бред"
+	symptoms = "Exhibits obsessive behaviors towards a specific individual, \
+		including frequent staring, intrusive thoughts, and an overwhelming desire to be near them. \
+		This obsession can lead to social withdrawal, anxiety, and impaired daily functioning."
 	gain_text = "If you see this message, make a github issue report. The trauma initialized wrong."
 	lose_text = span_warning("Голоса в вашей голове замолкают..")
 	can_gain = TRUE

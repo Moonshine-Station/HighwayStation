@@ -10,6 +10,9 @@
 	name = "Люмифобия"
 	desc = "У пациента необъяснимая побочная реакция на свет."
 	scan_desc = "светочувствительность"
+	symptoms = "Exhibits extreme discomfort and adverse reactions when exposed to bright light sources, \
+		and will go to great lengths to avoid illuminated areas. \
+		This sensitivity can lead to skin irritation, similar to that of a severe sunburn."
 	gain_text = span_warning("Вы чувствуете тягу к темноте.")
 	lose_text = span_notice("Свет больше не беспокоит вас.")
 	/// Cooldown to prevent warning spam
@@ -34,6 +37,8 @@
 	name = "Полтергейст"
 	desc = "Пациент, похоже, подвергается нападению невидимой агрессивной сущности."
 	scan_desc = "паранормальная активность"
+	symptoms = "Experiences frequent and unprovoked physical disturbances in their immediate vicinity, \
+		such as objects being thrown or moved without any apparent cause."
 	gain_text = span_warning("Вы чувствуете ненавистное присутствие рядом с собой.")
 	lose_text = span_notice("Вы чувствуете, как ненавистное присутствие исчезает.")
 
@@ -57,6 +62,8 @@
 	name = "Атаумазия"
 	desc = "Пациент совершенно невосприимчив к магическим силам."
 	scan_desc = "таумическая пустота"
+	symptoms = "Exhibits a complete immunity to effects unexplainable by conventional science, \
+		such as the abilities demonstrated by members of the Wizard Federation."
 	gain_text = span_notice("Вы понимаете, что магия не может быть реальной.")
 	lose_text = span_notice("Вы понимаете, что магия может быть реальной.")
 
@@ -72,6 +79,9 @@
 	name = "Преследующий призрак"
 	desc = "Пациента преследует призрак, видимый только ему."
 	scan_desc = "экстрасенсорная паранойя"
+	symptoms = "Feels an unshakable sensation of being watched or pursued by an unseen entity, \
+		leading to heightened anxiety, paranoia, and occasional hallucinations of a ghostly figure in their vicinity. \
+		Extreme cases may even result in physical harm inflicted upon the patient by a seemingly invisible force."
 	gain_text = span_warning("Вы чувствуете себя так, словно что-то хочет убить вас...")
 	lose_text = span_notice("Вы больше не чувствуете, что кто-то смотрит вам в спину.")
 	/// Type of stalker that is chasing us
@@ -134,6 +144,7 @@
 /datum/brain_trauma/magic/stalker/cosmic
 	stalker_type = /obj/effect/client_image_holder/stalker_phantom/cosmic
 	random_gain = FALSE
+	known_trauma = FALSE
 
 /obj/effect/client_image_holder/stalker_phantom/cosmic
 	image_icon = 'icons/mob/nonhuman-player/96x96eldritch_mobs.dmi'

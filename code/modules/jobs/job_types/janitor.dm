@@ -1,6 +1,6 @@
 /datum/job/janitor
 	title = JOB_JANITOR
-	description = "Убирайте мусор и кровь. Меняйте лампочки. Подскальзывайте людей."
+	description = "Убирайте мусор и кровь, меняйте лампочки, подскальзывайте людей."
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 1

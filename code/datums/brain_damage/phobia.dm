@@ -2,6 +2,10 @@
 	name = "Фобия"
 	desc = "Пациент чего-то необоснованно боится."
 	scan_desc = "фобия"
+	symptoms = "When exposed to a specific stimulus, experiences \
+		an immediate anxiety or fear response far greater than typically expected, \
+		leading to panic attacks or impaired social and occupational functioning. \
+		Physical contact such as hugging, or medication such as Psicodine may lessen the severity of the reaction."
 	gain_text = span_warning("Вас начинают сильно беспокоить стандартные вещи...")
 	lose_text = span_notice("Вы больше не испытываете страха перед стандартными вещами.")
 	/// What do we fear exactly?

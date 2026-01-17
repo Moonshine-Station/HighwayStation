@@ -1,7 +1,7 @@
 /datum/job/shaft_miner
 	title = JOB_SHAFT_MINER
-	description = "Отправляйтесь в неведомые земли. Копайте руду. \
-		Встречайте странных существ. Убейте их всех ради наживы."
+	description = "Отправляйтесь в неведомые земли, копайте руду, \
+		встречайте странных существ, убейте их всех ради наживы."
 	faction = FACTION_STATION
 	total_positions = 3
 	spawn_positions = 3

@@ -53,6 +53,7 @@
 /obj/item/circuitboard/machine/abductor/core
 	name_extension = "(пустотное ядро)"
 
+/*
 /datum/crafting_recipe
 
 /datum/crafting_recipe/New()
@@ -62,3 +63,4 @@
 		var/atom/crafting_result = result
 		new_name = declent_ru_initial(crafting_result::name)
 	name = capitalize(new_name) || name
+*/

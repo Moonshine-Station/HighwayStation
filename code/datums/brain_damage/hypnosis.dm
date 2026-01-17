@@ -2,6 +2,8 @@
 	name = "Гипноз"
 	desc = "Сознания пациента полностью поглощено каким-то словом или предложением, фокусируя мысли и поступки вокруг него."
 	scan_desc = "повторяющийся мыслительный паттерн"
+	symptoms = "Fixates on a specific word or phrase. This fixation can lead to altered behavior, \
+		such as prioritizing actions related to the phrase over other tasks while neglecting work, needs, or social interactions."
 	gain_text = ""
 	lose_text = ""
 	resilience = TRAUMA_RESILIENCE_SURGERY
