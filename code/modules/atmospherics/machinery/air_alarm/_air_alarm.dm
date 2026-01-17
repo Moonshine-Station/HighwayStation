@@ -99,8 +99,8 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 		set_panel_open(TRUE)
 
 	if(name == initial(name))
-		var/area/current_area = get_area(src)
-		name = "[declent_ru(NOMINATIVE)] [current_area.declent_ru(GENITIVE)]"
+		ru_names_rename(ru_names_toml(src::name, suffix = " ([capitalize(get_area_name(src))])", override_base = "[get_area_name(src)] Air Alarm"))
+		name = "[get_area_name(src)] Air Alarm"
 
 	tlv_collection = list()
 	tlv_collection["pressure"] = new /datum/tlv/pressure
@@ -122,16 +122,18 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 	select_mode(src, /datum/air_alarm_mode/filtering, should_apply = FALSE)
 
 	AddElement(/datum/element/connect_loc, atmos_connections)
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/air_alarm_general,
-		/obj/item/circuit_component/air_alarm,
-		/obj/item/circuit_component/air_alarm_scrubbers,
-		/obj/item/circuit_component/air_alarm_vents
-	))
+	AddComponent(/datum/component/usb_port, \
+		typecacheof(list(
+			/obj/item/circuit_component/air_alarm_general,
+			/obj/item/circuit_component/air_alarm,
+			/obj/item/circuit_component/air_alarm_scrubbers,
+			/obj/item/circuit_component/air_alarm_vents
+		), only_root_path = TRUE) \
+	)
 
 	GLOB.air_alarms += src
 	if(mapload)
-		find_and_hang_on_atom()
+		find_and_mount_on_atom()
 	register_context()
 	check_enviroment()
 
@@ -181,8 +183,8 @@ GLOBAL_LIST_EMPTY_TYPED(air_alarms, /obj/machinery/airalarm)
 
 /obj/machinery/airalarm/update_name(updates)
 	. = ..()
-	var/area/current_area = get_area(src)
-	name = "[declent_ru(NOMINATIVE)] [current_area.declent_ru(GENITIVE)]"
+	ru_names_rename(ru_names_toml(src::name, suffix = " ([capitalize(get_area_name(my_area))])", override_base = "[get_area_name(my_area)] Air Alarm"))
+	name = "[get_area_name(my_area)] Air Alarm"
 
 /obj/machinery/airalarm/on_exit_area(datum/source, area/area_to_unregister)
 	//we cannot unregister from an area we never registered to in the first place

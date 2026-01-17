@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	else
 		icon_state = "[parent.radial_slice_icon]_focus"
 	if(tooltips)
-		openToolTip(usr, src, params, title = get_tip_name(), theme = tooltip_theme)
+		openToolTip(usr, src, params, title = declent_ru(NOMINATIVE), theme = tooltip_theme)
 	if (click_on_hover && !isnull(usr) && !isnull(parent))
 		Click(location, control, params)
 
@@ -429,7 +429,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /// Can be provided to choices in radial menus if you want to provide more information
 /datum/radial_menu_choice
 	/// Required -- what to display for this button
-	var/image
+	var/image/image
 
 	/// If provided, this will be the name the radial slice hud button. This has priority over everything else.
 	var/name

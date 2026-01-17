@@ -14,9 +14,6 @@
 	QDEL_NULL(menu)
 	return ..()
 
-/datum/preference_middleware/loadout/on_new_character(mob/user)
-	preferences.character_preview_view?.update_body()
-
 /datum/preference_middleware/loadout/proc/action_select_item(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
 	var/path_to_use = text2path(params["path"])
@@ -27,7 +24,7 @@
 
 	if(params["deselect"])
 		deselect_item(interacted_item)
-	else
+	else if(!interacted_item.is_disabled())
 		select_item(interacted_item)
 	return TRUE
 
@@ -67,7 +64,7 @@
 /// Select [path] item to [category_slot] slot.
 /datum/preference_middleware/loadout/proc/select_item(datum/loadout_item/selected_item)
 	/// BANDASTATION ADDITION START - Loadout
-	if(preferences.parent.get_donator_level() < selected_item.donator_level)
+	if(!selected_item.is_available(preferences.parent))
 		return
 
 	var/points_left = preferences.get_loadout_max_points() - preferences.loadout_points_spent

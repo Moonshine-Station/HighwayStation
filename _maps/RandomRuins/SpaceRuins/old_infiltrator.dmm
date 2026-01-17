@@ -215,7 +215,7 @@
 	pixel_y = -4;
 	pixel_x = -7
 	},
-/obj/item/computer_disk/syndicate/camera_app{
+/obj/item/disk/computer/syndicate/camera_app{
 	pixel_x = -5;
 	pixel_y = 9
 	},
@@ -268,7 +268,6 @@
 "sL" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
-/obj/machinery/light/directional/north,
 /obj/item/stack/cable_coil,
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/ruin/space/unpowered)
@@ -439,6 +438,7 @@
 	pixel_x = 8
 	},
 /obj/machinery/status_display/evac/directional/north,
+/obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/ruin/space/unpowered)
 "Da" = (

@@ -81,7 +81,7 @@
 		if(panel_open)
 			. += span_notice("Её можно поддеть [EXAMINE_HINT("ломом")].")
 		else
-			. += span_notice("Её люк можно поддеть [EXAMINE_HINT("ломом")] и [state_open ? "закрыть" : "открыть"].")
+			. += span_notice("Её люк можно поддеть [EXAMINE_HINT("ломом")] и [state_open ? "закрыть" : "открыть"]..")
 
 	if(isnull(server_ref?.resolve()))
 		. += span_infoplain("Оно ни к чему не подключено.")

@@ -47,7 +47,7 @@
 		playsound(our_turf, 'sound/effects/bubbles/bubbles2.ogg', 50, TRUE)
 
 	return ..()
-f
+
 /obj/structure/destructible/eldritch_crucible/examine(mob/user)
 	. = ..()
 	if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))

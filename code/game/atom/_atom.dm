@@ -347,8 +347,8 @@
 /atom/proc/on_craft_completion(list/components, datum/crafting_recipe/current_recipe, atom/crafter)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_ON_CRAFT, components, current_recipe)
-	var/list/remaining_parts = current_recipe?.parts?.Copy()
-	var/list/parts_by_type = remaining_parts?.Copy()
+	var/list/remaining_parts = LAZYLISTDUPLICATE(current_recipe?.parts)
+	var/list/parts_by_type = LAZYLISTDUPLICATE(remaining_parts)
 	for(var/parttype in parts_by_type) //necessary for our is_type_in_list() call with the zebra arg set to true
 		parts_by_type[parttype] = parttype
 	for(var/atom/movable/movable as anything in components) // machinery or structure objects in the list are guaranteed to be used up. We only check items.
@@ -430,7 +430,7 @@
 	for(var/datum/reagent/current_reagent as anything in reagents)
 		. |= current_reagent.expose_atom(src, reagents[current_reagent], methods)
 
-/// Are you allowed to drop this atom
+/// Are you allowed to drop stuff inside this atom
 /atom/proc/AllowDrop()
 	return FALSE
 
@@ -867,7 +867,7 @@
 	var/shift_lmb_ctrl_shift_lmb_line = ""
 	var/extra_lines = 0
 	var/extra_context = ""
-	var/used_name = get_tip_name()
+	var/used_name = declent_ru(NOMINATIVE)
 
 	if(isliving(user) || isovermind(user) || iscameramob(user) || (ghost_screentips && isobserver(user)))
 		var/obj/item/held_item = user.get_active_held_item()
@@ -978,3 +978,7 @@
 	if(pass_info.pass_flags & pass_flags_self)
 		return TRUE
 	. = !density
+
+/// Logic for adding reskin components goes here. Override for atom-specific reskin setups.
+/atom/proc/setup_reskins()
+	return

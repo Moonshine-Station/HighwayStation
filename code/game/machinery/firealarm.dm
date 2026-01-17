@@ -72,9 +72,7 @@
 	soundloop = new(src, FALSE)
 	set_wires(new /datum/wires/firealarm(src))
 
-	AddComponent(/datum/component/usb_port, list(
-		/obj/item/circuit_component/firealarm,
-	))
+	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/firealarm), only_root_path = TRUE))
 
 	AddComponent( \
 		/datum/component/redirect_attack_hand_from_turf, \
@@ -86,7 +84,7 @@
 
 	register_context()
 	if(mapload)
-		find_and_hang_on_atom()
+		find_and_mount_on_atom()
 	update_appearance()
 
 /obj/machinery/firealarm/Destroy()
@@ -121,8 +119,8 @@
 
 /obj/machinery/firealarm/update_name(updates)
 	. = ..()
-	var/area/current_area = get_area(src)
-	name = "[declent_ru(NOMINATIVE)] [id_tag] [current_area.declent_ru(GENITIVE)]"
+	ru_names_rename(ru_names_toml(src::name, suffix = " ([capitalize(get_area_name(my_area))]) [id_tag]", override_base = "[get_area_name(my_area)] [initial(name)] [id_tag]"))
+	name = "[get_area_name(my_area)] [initial(name)] [id_tag]"
 
 /obj/machinery/firealarm/on_exit_area(datum/source, area/area_to_unregister)
 	//we cannot unregister from an area we never registered to in the first place
@@ -514,7 +512,7 @@
 	return FALSE
 
 /obj/machinery/firealarm/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data["[RCD_DESIGN_MODE]"])
+	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_WALLFRAME)
 			balloon_alert_to_viewers("circuit installed")
 			buildstage = FIRE_ALARM_BUILD_NO_WIRES

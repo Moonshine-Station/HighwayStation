@@ -9,12 +9,14 @@
 	name = "Галлюцинации"
 	desc = "Пациент страдает от постоянных галлюцинаций."
 	scan_desc = "шизофрения"
+	symptoms = "Experiences frequent hallucinations (either visual or auditory) or delusions \
+		which subside on being administered Mindbreaker Toxin."
 	gain_text = span_warning("Вы чувствуете, что ваша связь с реальностью ослабевает...")
 	lose_text = span_notice("Вы чувствуете себя более приземленным.")
 	/// Whether the hallucinations we give are uncapped, ie all the wacky ones
 	var/uncapped = FALSE
 
-/datum/brain_trauma/mild/hallucinations/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/hallucinations/on_life(seconds_per_tick)
 	if(owner.stat >= UNCONSCIOUS)
 		return
 	if(HAS_TRAIT(owner, TRAIT_RDS_SUPPRESSED))
@@ -35,10 +37,11 @@
 	name = "Заикание"
 	desc = "Пациент не может нормально говорить."
 	scan_desc = "нарушение координации движений рта"
+	symptoms = "Has difficulty speaking fluently, often repeating or prolonging sounds or syllables."
 	gain_text = span_warning("Говорить четко становится все труднее.")
 	lose_text = span_notice("Вы чувствуете, что контролируете свою речь.")
 
-/datum/brain_trauma/mild/stuttering/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/stuttering/on_life(seconds_per_tick)
 	owner.adjust_stutter_up_to(5 SECONDS * seconds_per_tick, 50 SECONDS)
 
 /datum/brain_trauma/mild/stuttering/on_lose()
@@ -48,6 +51,7 @@
 /datum/brain_trauma/mild/dumbness
 	name = "Отупение"
 	desc = "У пациента снижена мозговая активность, что приводит к снижению его интеллекта."
+	symptoms = "Exhibits a noticeable decline in cognitive functions, including speech, memory, motorics, and problem-solving abilities."
 	scan_desc = "снижение мозговой активности"
 	gain_text = span_warning("Вы чувствуете себя глупее.")
 	lose_text = span_notice("Вы снова чувствуете себя умным.")
@@ -57,7 +61,7 @@
 	owner.add_mood_event("dumb", /datum/mood_event/oblivious)
 	return ..()
 
-/datum/brain_trauma/mild/dumbness/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/dumbness/on_life(seconds_per_tick)
 	owner.adjust_derpspeech_up_to(5 SECONDS * seconds_per_tick, 50 SECONDS)
 	if(SPT_PROB(1.5, seconds_per_tick))
 		owner.emote("drool")
@@ -74,6 +78,7 @@
 	name = "Дефект речи"
 	desc = "Пациент не в состоянии составлять связные предложения."
 	scan_desc = "коммуникативное расстройство"
+	symptoms = "Struggles to articulate thoughts into coherent speech, often resulting in jumbled or nonsensical sentences."
 	gain_text = span_danger("Кажется, вы не можете сформулировать ни одной связной мысли!")
 	lose_text = span_danger("Ваш разум становится более ясным.")
 
@@ -88,11 +93,12 @@
 /datum/brain_trauma/mild/concussion
 	name = "Сотрясение"
 	desc = "У пациента сотрясение мозга."
+	symptoms = "Experiences headaches, dizziness, nausea, confusion, and occasional loss of consciousness."
 	scan_desc = "сотрясение"
 	gain_text = span_warning("У вас болит голова!")
 	lose_text = span_notice("Давление в вашей голове начинает ослабевать.")
 
-/datum/brain_trauma/mild/concussion/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/concussion/on_life(seconds_per_tick)
 	if(SPT_PROB(2.5, seconds_per_tick))
 		switch(rand(1,11))
 			if(1)
@@ -117,6 +123,8 @@
 	name = "Анозогнозия"
 	desc = "Пациент всегда чувствует себя здоровым, независимо от своего состояния."
 	scan_desc = "дефицит самосознания"
+	symptoms = "Exhibits a lack of awareness or denial of their own medical conditions, \
+		often insisting they are perfectly healthy despite clear evidence to the contrary."
 	gain_text = span_notice("Вы чувствуете себя прекрасно!")
 	lose_text = span_warning("Вы больше не чувствуете себя совершенно здоровым.")
 
@@ -124,7 +132,7 @@
 	owner.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_healthy, type)
 	return ..()
 
-/datum/brain_trauma/mild/healthy/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/healthy/on_life(seconds_per_tick)
 	owner.adjust_stamina_loss(-6 * seconds_per_tick) //no pain, no fatigue
 
 /datum/brain_trauma/mild/healthy/on_lose()
@@ -135,10 +143,11 @@
 	name = "Мышечная слабость"
 	desc = "Время от времени пациент испытывает приступы мышечной слабости."
 	scan_desc = "слабый сигнал двигательного нерва"
+	symptoms = "Experiences sudden episodes of muscle weakness, resulting in weak grip strength, difficulty moving, and occasional falls."
 	gain_text = span_warning("Ваши мышцы ощущаются странно слабыми.")
 	lose_text = span_notice("Вы снова чувствуете контроль над своими мышцами.")
 
-/datum/brain_trauma/mild/muscle_weakness/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/muscle_weakness/on_life(seconds_per_tick)
 	var/fall_chance = 1
 	if(owner.move_intent == MOVE_INTENT_RUN)
 		fall_chance += 2
@@ -162,6 +171,7 @@
 	name = "Мышечные спазмы"
 	desc = "У пациента периодически возникают мышечные спазмы, заставляющие его двигаться непроизвольно."
 	scan_desc = "нервные припадки"
+	symptoms = "Experiences involuntary muscle contractions leading to sudden, brief movements or twitches, which can interfere with normal motor functions."
 	gain_text = span_warning("Ваши мышцы ощущаются странно слабыми.")
 	lose_text = span_notice("Вы снова чувствуете контроль над своими мышцами.")
 
@@ -177,10 +187,11 @@
 	name = "Нервный кашель"
 	desc = "Пациент испытывает постоянную потребность откашляться."
 	scan_desc = "нервный кашель"
+	symptoms = "Experiences a persistent, uncontrollable urge to cough, which may disrupt normal activities and social interactions."
 	gain_text = span_warning("У вас постоянно чешется горло...")
 	lose_text = span_notice("Ваше горло перестает чесаться.")
 
-/datum/brain_trauma/mild/nervous_cough/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/nervous_cough/on_life(seconds_per_tick)
 	if(SPT_PROB(6, seconds_per_tick) && !HAS_TRAIT(owner, TRAIT_SOOTHED_THROAT))
 		if(prob(5))
 			to_chat(owner, span_warning("[pick("У вас приступ кашля!", "Вы не можете перестать кашлять!")]"))
@@ -195,6 +206,7 @@
 	name = "Экспрессивная афазия"
 	desc = "Пациент страдает частичной потерей речи, что приводит к сокращению словарного запаса."
 	scan_desc = "неспособность составлять сложные предложения"
+	symptoms = "Struggles to express thoughts verbally, often substituting complex words with simpler alternatives or nonsensical sounds."
 	gain_text = span_warning("Вы теряете способность понимать сложные слова.")
 	lose_text = span_notice("Вы чувствуете, что ваш словарный запас снова возвращается к норме.")
 
@@ -237,6 +249,7 @@
 	name = "Мысленное эхо"
 	desc = "Языковые нейроны пациента функционируют некорректно, в результате чего предыдущие речевые структуры иногда спонтанно всплывают на поверхность."
 	scan_desc = "циклическая нейронная структура"
+	symptoms = "Experiences involuntary repetition of previously heard or spoken phrases, leading to persistent moments of déjà vu in both hearing and speech."
 	gain_text = span_warning("Вы чувствуете слабое эхо своих мыслей...")
 	lose_text = span_notice("Слабое эхо затихает вдали.")
 	var/list/hear_dejavu = list()
@@ -276,6 +289,7 @@
 	name = "Ахроматопсия"
 	desc = "Затылочная доля мозга пациента неспособна распознавать и интерпретировать цвета, в результате пациент полностью теряет цветовое зрение."
 	scan_desc = "цветовая слепота"
+	symptoms = "Exhibits a complete inability to perceive colors, seeing the world in shades of gray, black, and white."
 	gain_text = span_warning("Кажется, что мир вокруг вас теряет свои краски.")
 	lose_text = span_notice("Мир снова кажется ярким и красочным.")
 
@@ -291,6 +305,8 @@
 	name = "Собственничество"
 	desc = "Пациент чрезвычайно бережно относится к своим вещам."
 	scan_desc = "собственничество"
+	symptoms = "Exhibits an overwhelming need to keep personal belongings close, \
+		often resulting in an intense grip on held items that persists even when forced to let go."
 	gain_text = span_warning("Вы начинаете беспокоиться о своих вещах.")
 	lose_text = span_notice("Вы меньше беспокоитесь о своих вещах.")
 
@@ -299,7 +315,7 @@
 	for(var/obj/item/thing in owner.held_items)
 		clear_trait(thing)
 
-/datum/brain_trauma/mild/possessive/on_life(seconds_per_tick, times_fired)
+/datum/brain_trauma/mild/possessive/on_life(seconds_per_tick)
 	if(!SPT_PROB(5, seconds_per_tick))
 		return
 
